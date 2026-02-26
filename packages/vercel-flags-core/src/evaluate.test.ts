@@ -1368,7 +1368,7 @@ describe('evaluate', () => {
       result: false,
     },
 
-    // ---- Case-insensitive (ci option) ----
+    // ---- Case-insensitive (4th element: { ci: true }) ----
 
     // EQ { ci: true }
     {
@@ -1394,6 +1394,12 @@ describe('evaluate', () => {
       condition: [['user', 'id'], Comparator.EQ, 'uid1', { ci: true }],
       entities: {},
       result: false,
+    },
+    {
+      name: `${Comparator.EQ} ci with number (no effect)`,
+      condition: [['user', 'age'], Comparator.EQ, 42, { ci: true }],
+      entities: { user: { age: 42 } },
+      result: true,
     },
 
     // NOT_EQ { ci: true }
